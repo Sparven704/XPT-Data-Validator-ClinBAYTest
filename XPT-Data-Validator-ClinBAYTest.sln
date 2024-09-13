@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XPT-Data-Validator-ClinBAYTest", "XPT-Data-Validator-ClinBAYTest\XPT-Data-Validator-ClinBAYTest.csproj", "{7A062D95-F503-4FB3-BBD2-7F024E3BFCF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationRulesUnitTests", "ValidationRulesUnitTests\ValidationRulesUnitTests.csproj", "{D47D8DA5-9873-4C72-B55F-FA40FF00F962}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A062D95-F503-4FB3-BBD2-7F024E3BFCF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A062D95-F503-4FB3-BBD2-7F024E3BFCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A062D95-F503-4FB3-BBD2-7F024E3BFCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A062D95-F503-4FB3-BBD2-7F024E3BFCF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D47D8DA5-9873-4C72-B55F-FA40FF00F962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D47D8DA5-9873-4C72-B55F-FA40FF00F962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D47D8DA5-9873-4C72-B55F-FA40FF00F962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D47D8DA5-9873-4C72-B55F-FA40FF00F962}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E150C253-1965-431E-9A7C-9E57E8699880}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,90 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "XPT Data Validator";
+}
+
+<div class="text-center" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+    <h1 class="display-4" style="margin-bottom: 6rem">Welcome to XPT Data Validator</h1>
+    <p>Upload one or more .xpt files to have them validated.</p>
+    <div class="validate-table">
+        <table style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <tr>
+                <td>File:</td>
+                <td><input type="file" id="file" multiple /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="button" id="btnValidate" value="Validate" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><progress id="fileProgress" style="display: none"></progress></td>
+            </tr>
+        </table>
+        <span id="lblMessage" style="color: green"></span>
+        <a id="downloadLink" href="#" style="display: none">Download Report</a>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        $("body").on("click", "#btnValidate", function () {
+            var formData = new FormData();
+            var files = $("#file")[0].files;
+
+            if (files.length === 0) {
+                alert("Please select at least one file.");
+                return;
+            }
+
+            // Append all selected files to formData
+            for (var i = 0; i < files.length; i++) {
+                formData.append("files", files[i]);
+            }
+
+            $.ajax({
+                url: 'https://localhost:7284/validate',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                xhr: function () {
+                    var fileXhr = $.ajaxSettings.xhr();
+                    if (fileXhr.upload) {
+                        $("#fileProgress").show();
+                        fileXhr.upload.addEventListener("progress", function (e) {
+                            if (e.lengthComputable) {
+                                $("#fileProgress").attr({
+                                    value: e.loaded,
+                                    max: e.total
+                                });
+                            }
+                        }, false);
+                    }
+                    return fileXhr;
+                },
+                success: function (response, status, xhr) {
+                    $("#fileProgress").hide();
+                    $("#lblMessage").html("<b>Validation complete.</b>");
+
+                    // Extract the content-disposition header to get the filename
+                    var disposition = xhr.getResponseHeader('Content-Disposition');
+                    var filename = 'ValidationReport.xlsx';
+                    
+                    // Create a Blob from the response
+                    var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                    var url = URL.createObjectURL(blob);
+                    $("#downloadLink").attr("href", url).show().text("Download Report").attr('download', filename);
+                },
+                error: function (xhr, status, error) {
+                    $("#fileProgress").hide();
+                    $("#lblMessage").html("<b>Error:</b> " + error);
+                },
+                // Ensure response type is blob
+                dataType: 'binary',
+                xhrFields: {
+                    responseType: 'blob'
+                }
+            });
+        });
+    </script>
+</div>
