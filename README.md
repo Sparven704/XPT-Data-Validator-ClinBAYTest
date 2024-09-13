@@ -15,7 +15,7 @@ Welcome to the **XPT Data Validator**, a tool designed to validate XPT data file
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/xpt-data-validator.git
+    git clone https://github.com/Sparven704/XPT-Data-Validator-ClinBAYTest.git
     cd xpt-data-validator
     ```
 
